@@ -1,0 +1,28 @@
+.Room{
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.Room:hover{
+background-color: black;
+color: white;
+}
+
+.CreateRoom{
+    margin-right: 10px;
+}
+
+.JoinRoom{
+    margin-left: 10px;
+}
+
+@media (max-width : 768px){
+    .CreateRoom{
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+    .JoinRoom{
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+}

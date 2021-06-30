@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Carme&family=Montserrat&display=swap');
 .App {
   text-align: center;
+}
+
+.App-text {
+  font-family: 'Montserrat', 'Carme', 'sans-serif';
 }
 
 .App-logo {
