@@ -1,28 +1,34 @@
-.Room{
+.RoomBtn {
+    background-color: #0000;
+    color: black;
     border: 1px solid black;
     cursor: pointer;
 }
 
-.Room:hover{
-background-color: black;
-color: white;
+.RoomBtn:hover {
+    background-color: black;
+    color: white;
 }
 
-.CreateRoom{
+.CreateRoomBtn {
     margin-right: 10px;
 }
 
-.JoinRoom{
+.JoinRoomBtn {
     margin-left: 10px;
 }
 
-@media (max-width : 768px){
-    .CreateRoom{
+.Cursor{
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .CreateRoomBtn {
         margin-right: 0px;
         margin-bottom: 10px;
     }
-    .JoinRoom{
-        margin-left: 0px;
+    .JoinRoomBtn {
+        margin-left: 0px;        
         margin-top: 10px;
     }
 }

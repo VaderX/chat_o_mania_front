@@ -1,0 +1,34 @@
+.CreateRoomDialog {
+    border: 1px solid black;
+}
+
+.RoomIdCol {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.copyIcon {
+    border-left: 1px solid black;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.copyIcon:hover {
+    background-color: black;
+    color: white;
+}
+
+.btn {
+    padding: 15px 40px 15px 40px;
+}
+
+.uuid{
+    font-size: large;
+}
+
+@media (max-width: 768px) {
+    .uuid {
+        font-size: medium
+    }
+}
