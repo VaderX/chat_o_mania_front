@@ -1,14 +1,22 @@
 import './Home.css';
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import { useSelector } from 'react-redux';
 import CreateRoom from '../CreateRoom/CreateRoom';
 import JoinRoom from '../JoinRoom/JoinRoom';
 const Home = () => {
+    const roomId = useSelector(state => state.roomId)
+    // const currentUser = useSelector(state => state.currentUser)
     const [create, setCreate] = useState(false);
     const [join, setJoin] = useState(false);
     const backHandler = () => {
         setCreate(false); setJoin(false);
     }
+    // console.log("room id from home", roomId)
+    // console.log("this is user hehehe", currentUser)
+    if (roomId)
+        window.location = '/room/' + roomId;
+
     return (
         <React.Fragment>
             <Container>
