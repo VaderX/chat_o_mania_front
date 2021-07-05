@@ -1,12 +1,14 @@
+import './JoinRoom.css';
 import React from 'react';
 import axios from 'axios';
-import { Col, Input, Button } from 'reactstrap';
+import { Row, Col, Input, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 
 class JoinRoom extends React.Component {
 
     state = {
         resMsg: "",
+        userMsg: "",
         data: {
             roomId: '',
             name: this.props.currentUser
@@ -19,6 +21,8 @@ class JoinRoom extends React.Component {
         }, () => {
             if (field === 'roomId')
                 this.roomChecker()
+            else if (field === 'name')
+                this.userChecker()
         })
     }
 
@@ -26,6 +30,14 @@ class JoinRoom extends React.Component {
         axios.get("/checkRoom/" + this.state.data.roomId)
             .then(res => {
                 this.setState({ resMsg: res.data.roomName })
+            })
+            .catch(err => console.log(err))
+    }
+
+    userChecker() {
+        axios.get("/checkUser/" + this.state.data.roomId + "/" + this.state.data.name)
+            .then(res => {
+                this.setState({ userMsg: res.data })
             })
             .catch(err => console.log(err))
     }
@@ -52,16 +64,40 @@ class JoinRoom extends React.Component {
                             <i className="fas fa-arrow-circle-left Cursor" onClick={this.props.back}></i>
                         </Col>
                         <Col className="mt-4">
-                            <Input placeholder="Enter room ID" onChange={(e) => this.handleEvent("roomId", e.target.value)} className="p-3" />
+                            <Input
+                                placeholder="Enter room ID"
+                                onChange={(e) => this.handleEvent("roomId", e.target.value)}
+                                className="p-3"
+                            />
                         </Col>
                         <Col className="mt-4">
-                            <Input placeholder="Enter your name" defaultValue={this.props.currentUser} onChange={(e) => this.handleEvent("name", e.target.value)} className="p-3" />
+                            <Row>
+                                <Col>
+                                    <Input
+                                        placeholder="Enter your name"
+                                        disabled={this.state.resMsg !== "No room found" ? false : true}
+                                        defaultValue={this.props.currentUser}
+                                        onChange={(e) => this.handleEvent("name", e.target.value)}
+                                        className="p-3"
+                                    />
+                                </Col>
+                                {this.state.userMsg === "" ? null :
+                                    <Col xs="2" md="2" className="m-auto fs-1">
+                                        {this.state.userMsg ?
+                                            <i className="fas fa-check-circle tick"></i> :
+                                            <i className="fas fa-times-circle cross"></i>
+                                        }
+                                    </Col>}
+                            </Row>
                         </Col>
                         <Col className='mt-5'>
                             {this.state.resMsg}
                         </Col>
                         <Col className="mt-5">
-                            <Button className="RoomBtn btn mb-5">Enter in Room</Button>
+                            <Button
+                                className="RoomBtn btn mb-5"
+                                disabled={this.state.userMsg ? false : true}
+                            >Enter in Room</Button>
                         </Col>
                     </form>
                 </Col>

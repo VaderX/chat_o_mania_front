@@ -1,6 +1,7 @@
 const initialState = {
     roomId: sessionStorage.getItem("roomId"),
-    currentUser: sessionStorage.getItem("userName")
+    currentUser: sessionStorage.getItem("userName"),
+    admin: sessionStorage.getItem("admin")
 }
 
 const Reducer = (state = initialState, action) => {
@@ -14,7 +15,19 @@ const Reducer = (state = initialState, action) => {
     else if (action.type === "DEL_ROOM") {
         sessionStorage.removeItem("roomId");
         state = {
-            ...state, roomId: undefined
+            ...state, roomId: null
+        }
+    }
+    else if (action.type === "ADMIN") {
+        sessionStorage.setItem("admin", action.value)
+        state = {
+            ...state, admin: action.value
+        }
+    }
+    else if (action.type === "DEL_ADMIN") {
+        sessionStorage.removeItem("admin")
+        state = {
+            ...state, currentUser: null
         }
     }
     else if (action.type === "USER") {
@@ -23,13 +36,7 @@ const Reducer = (state = initialState, action) => {
             ...state, currentUser: action.value
         }
     }
-    else if (action.type === "DEL_USER") {
-        sessionStorage.removeItem("userName");
-        state = {
-            ...state, currentUser: undefined
-        }
-    }
-    // console.log("this is romid", state.roomId)
+    // console.log("this is romid", state.admin)
     return state;
 }
 

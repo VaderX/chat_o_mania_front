@@ -27,8 +27,10 @@ class CreateRoom extends React.Component {
         const data = { ...this.state.data };
         data['roomId'] = this.state.uuid;
         axios.post('/addRoom', data)
-            .then(res =>
-                this.props.updateRoomId(this.state.uuid))
+            .then(res => {
+                this.props.updateRoomId(this.state.uuid)
+                this.props.updateAdmin(this.state.data.admin)
+            })
             .catch(err => console.log(err))
     }
 
@@ -64,6 +66,7 @@ class CreateRoom extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
         updateRoomId: (uuid) => dispatch({ type: "ROOM_ID", value: uuid }),
+        updateAdmin: (admin) => dispatch({ type: "ADMIN", value: admin })
     }
 }
 

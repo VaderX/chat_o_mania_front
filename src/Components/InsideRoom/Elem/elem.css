@@ -1,0 +1,25 @@
+.chatArea {
+    /* background-color: green; */
+    overflow-y: scroll;
+}
+
+.chatTextBody {
+    border-radius: 4px;
+}
+
+.msgDetails {
+    font-size: small;
+    color: #666666;
+}
+
+.reciever {
+    background-color: #FFD280;
+}
+
+.sender {
+    background-color: #9999FF;
+}
+
+.SidebarBody {
+    border-right: 1px solid black;
+}
