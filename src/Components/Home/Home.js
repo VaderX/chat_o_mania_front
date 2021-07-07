@@ -1,44 +1,24 @@
 import './Home.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { useSelector } from 'react-redux';
-import CreateRoom from '../CreateRoom/CreateRoom';
-import JoinRoom from '../JoinRoom/JoinRoom';
-const Home = () => {
-    const roomId = useSelector(state => state.roomId)
-    // const currentUser = useSelector(state => state.currentUser)
-    const [create, setCreate] = useState(false);
-    const [join, setJoin] = useState(false);
-    const backHandler = () => {
-        setCreate(false); setJoin(false);
-    }
-    // console.log("room id from home", roomId)
-    // console.log("this is user hehehe", currentUser)
-    if (roomId)
-        window.location = '/room/' + roomId;
+import ChatOptionParser from './Elem/ChatOptionParser';
 
+const Home = () => {
     return (
         <React.Fragment>
-            <Container>
-                <Row className="text-center mt-5">
-                    <Col md="3"></Col>
-                    {
-                        (!join && !create) ?
-                            <React.Fragment>
-                                <Col xs="11" md="3" className="m-auto RoomBtn CreateRoomBtn p-5" onClick={() => setCreate(!create)}>
-                                    Create a Room
-                                </Col>
-                                <Col xs="11" md="3" className="m-auto RoomBtn JoinRoomBtn p-5" onClick={() => setJoin(!join)} >
-                                    Join a Room
-                                </Col>
-                            </React.Fragment>
-                            : (!join) ? <CreateRoom back={backHandler} /> : <JoinRoom back={backHandler} />
-                    }
-                    <Col md="3"></Col>
+            <Container fluid>
+                <Row fluid className="text-white bg-primary text-center">
+                    <h1 className="display-3 mt-3 mb-5">Welcome to Chat-O-Mania</h1>
+                    <p className="lead mb-4">Chat with friends, without login! :)</p>
+                    <p>Join or Create rooms with people you know or go Global.... Meet new people and make them friends.</p>
                 </Row>
+            </Container>
+            <Container>
+                <ChatOptionParser option="global" heading="Go Global" desc="Make new Friends, share video, images, have fun and more..." />
+                <ChatOptionParser option="group" heading="Go with Team" desc="Join or Create room with friends, chat in group, share video, images, have fun and more..." />
+                <ChatOptionParser option="single" heading="Go Duet" desc="Want some privacy? Join with a friend, share video, images, have fun and more..." />
             </Container>
         </React.Fragment>
     )
 }
-
 export default Home;

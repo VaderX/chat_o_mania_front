@@ -61,13 +61,13 @@ class JoinRoom extends React.Component {
                 <Col xs="11" md="6" className="CreateRoomDialog m-auto">
                     <form onSubmit={this.submitHandler.bind(this)}>
                         <Col className="text-start mt-2 fs-3">
-                            <i className="fas fa-arrow-circle-left Cursor" onClick={this.props.back}></i>
+                            <i className="fas fa-arrow-circle-left Cursor text-secondary" onClick={this.props.back}></i>
                         </Col>
                         <Col className="mt-4">
                             <Input
                                 placeholder="Enter room ID"
                                 onChange={(e) => this.handleEvent("roomId", e.target.value)}
-                                className="p-3"
+                                className="p-3 text-secondary"
                             />
                         </Col>
                         <Col className="mt-4">
@@ -78,7 +78,7 @@ class JoinRoom extends React.Component {
                                         disabled={this.state.resMsg !== "No room found" ? false : true}
                                         defaultValue={this.props.currentUser}
                                         onChange={(e) => this.handleEvent("name", e.target.value)}
-                                        className="p-3"
+                                        className="p-3 text-secondary"
                                     />
                                 </Col>
                                 {this.state.userMsg === "" ? null :
@@ -90,7 +90,7 @@ class JoinRoom extends React.Component {
                                     </Col>}
                             </Row>
                         </Col>
-                        <Col className='mt-5'>
+                        <Col className='mt-5 text-secondary'>
                             {this.state.resMsg}
                         </Col>
                         <Col className="mt-5">

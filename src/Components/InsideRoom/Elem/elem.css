@@ -1,6 +1,37 @@
 .chatArea {
     /* background-color: green; */
     overflow-y: scroll;
+    overflow: auto;
+    height: 75vh;
+}
+
+.chatArea .inner {
+    height: 300%;
+    width: 100%;
+    content: '.';
+}
+
+.chatArea--simple::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.chatArea--simple::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.chatArea--simple::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.chatArea--simple::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.chatArea--simple::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.9);
 }
 
 .chatTextBody {
@@ -21,5 +52,5 @@
 }
 
 .SidebarBody {
-    border-right: 1px solid black;
+    border-right: 1px solid #B300B3;
 }

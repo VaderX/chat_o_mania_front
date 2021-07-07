@@ -6,7 +6,7 @@ const UUID = (props) => {
         <React.Fragment>
             <Col className="RoomIdCol">
                 <Row className="w-100 m-auto">
-                    <Col xs="10" md="11" className="uuid m-auto p-2">
+                    <Col xs="10" md="11" className="text-secondary uuid m-auto p-2">
                         {props.id}
                     </Col>
                     <Col className="copyIcon fs-4 p-md-2 p-3 m-auto" id="copyTooltip">

@@ -1,34 +1,30 @@
-.RoomBtn {
-    background-color: #0000;
-    color: black;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-.RoomBtn:hover {
-    background-color: black;
+.HomeRowHead {
+    background-color: #B300B3;
+    /* background-color: #00b3b3; */
+    /* background-color: #007d7d; */
     color: white;
 }
 
-.CreateRoomBtn {
-    margin-right: 10px;
+.ChatOptionsHome {
+    border: 1px solid #B300B3;
+    /* color: #d580ff; */
+    color: #B300B3;
+    /* border: 1px solid #00b3b3; */
+    /* border: 1px solid #007d7d; */
 }
 
-.JoinRoomBtn {
-    margin-left: 10px;
+.text-primary {
+    color: #B300B3 !important;
 }
 
-.Cursor{
-    cursor: pointer;
+.text-secondary {
+    color: #54007d !important;
 }
 
-@media (max-width: 768px) {
-    .CreateRoomBtn {
-        margin-right: 0px;
-        margin-bottom: 10px;
-    }
-    .JoinRoomBtn {
-        margin-left: 0px;        
-        margin-top: 10px;
-    }
+.bg-primary {
+    background-color: #B300B3 !important;
+}
+
+.bg-secondary{
+    background-color: #FCF5FF !important;
 }

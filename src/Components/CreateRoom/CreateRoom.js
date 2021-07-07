@@ -44,13 +44,13 @@ class CreateRoom extends React.Component {
                 <Col xs="11" md="6" className="CreateRoomDialog m-auto">
                     <form onSubmit={this.submitHandler.bind(this)}>
                         <Col className="text-start mt-2 fs-3">
-                            <i className="fas fa-arrow-circle-left Cursor" onClick={this.props.back}></i>
+                            <i className="fas fa-arrow-circle-left Cursor text-secondary" onClick={this.props.back}></i>
                         </Col>
                         <Col className="mt-4">
-                            <Input placeholder="Enter your room name" onChange={(e) => this.InputHandler("roomName", e.target.value)} className="p-3" />
+                            <Input placeholder="Enter your room name" onChange={(e) => this.InputHandler("roomName", e.target.value)} className="p-3 text-secondary" />
                         </Col>
                         <Col className="mt-4 mb-5">
-                            <Input placeholder="Enter your name" onChange={(e) => this.InputHandler("admin", e.target.value)} className="p-3" />
+                            <Input placeholder="Enter your name" onChange={(e) => this.InputHandler("admin", e.target.value)} className="p-3 text-secondary" />
                         </Col>
                         <UUID id={this.state.uuid} />
                         <Col className="mt-5">

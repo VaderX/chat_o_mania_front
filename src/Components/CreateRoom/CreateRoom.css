@@ -1,21 +1,22 @@
 .CreateRoomDialog {
-    border: 1px solid black;
+    border: 1px solid #B300B3;
 }
 
 .RoomIdCol {
-    border: 1px solid black;
+    border: 1px solid #B300B3;
     border-radius: 10px;
 }
 
 .copyIcon {
-    border-left: 1px solid black;
+    border-left: 1px solid #B300B3;
     cursor: pointer;
+    color: #54007d;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
 .copyIcon:hover {
-    background-color: black;
+    background-color: #d580ff;
     color: white;
 }
 

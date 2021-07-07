@@ -63,35 +63,35 @@ class InsideRoom extends React.Component {
                     <Row>
                         <Col>
                             <Row className="text-center mt-3 mb-3 w-100">
-                                <Col className="fs-2">
+                                <Col className="fs-2 text-secondary">
                                     {this.state.data.roomName}
                                 </Col>
                                 <Col md="6">
                                     <UUID id={this.state.data.roomId} />
                                 </Col>
                                 <Col md="">
-                                    <Button onClick={this.roomLeaveHandler.bind(this)}>Leave</Button>
+                                    <Button className="RoomBtn" onClick={this.roomLeaveHandler.bind(this)}>Leave</Button>
                                 </Col>
                             </Row>
                             <Row className="RoomTopInfo">
-                                {/* Chat area Again heheheeh */}
                                 <Sidebar />
                                 <Chat user={name} roomId={this.props.roomId} />
                             </Row>
                         </Col>
-                        <Col md="2" className="roomMates-InsideRoom">
+                        <Col md="2" className="roomMates-InsideRoom bg-primary text-white">
                             <Row className="mt-3">
                                 <Col className="text-center fs-4">Room Mates :)</Col>
                             </Row>
+                            {/* <hr className="bg-primary"/> */}
                             <Row className="mt-5">
-                                <Col xs="1" md="2"><i className="fas fa-globe"></i></Col>
-                                <Col xs="11" md="10" className="mb-4">{this.state.data.admin + " (Admin)"}</Col>
-                                {showRoomMates}
+                            <Col xs="1" md="2"><i className="fas fa-globe"></i></Col>
+                            <Col xs="11" md="10" className="mb-4">{this.state.data.admin + " (Admin)"}</Col>
+                            {showRoomMates}
                             </Row>
                         </Col>
                     </Row>
                 </Container>
-            </React.Fragment>
+            </React.Fragment >
         )
     }
 }

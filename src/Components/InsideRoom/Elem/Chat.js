@@ -1,5 +1,5 @@
 import './elem.css';
-import React, { createRef } from 'react';
+import React from 'react';
 import axios from 'axios';
 import socketIOClient from 'socket.io-client';
 import { Row, Col, Input } from 'reactstrap';
@@ -15,18 +15,29 @@ class Chat extends React.Component {
         messages: []
     }
 
-    ChatHeight = React.createRef()
+    chatPosition = React.createRef(null);
+    inputFocus = React.createRef(null);
 
-    msgInputHandler = (value) => {
-        this.setState({ text: value })
+    msgInputHandler = (e) => {
+        this.setState({ text: e.target.value })
     }
 
-    sendMsgHandler = () => {
+    submitHandler = (e) => {
+        if (e.key === "Enter")
+            this.sendMsgHandler();
+    }
+    sendMsgHandler = async () => {
         const socket = socketIOClient("http://localhost:5000");
         const time = new Date();
-        this.setState({ time: time }, () => {
+        await this.setState({ time: time }, () => {
             socket.emit("sendMsg", this.state)
         })
+        this.setState({ text: "" })
+    }
+
+    changeScrollPosition = () => {
+        this.chatPosition.current.scrollIntoView({ behavior: "smooth" });
+        this.inputFocus.current.focus();
     }
 
     async componentDidMount() {
@@ -41,28 +52,33 @@ class Chat extends React.Component {
         await socket.on("receiveMsg", res => {
             this.setState({ messages: res })
         })
+        this.changeScrollPosition();
+    }
+
+    componentDidUpdate() {
+        this.changeScrollPosition();
     }
 
     render() {
-        console.log("this is height og element", this.ChatHeight)
         const showMessages = this.state.messages !== undefined ? this.state.messages.map((content, idx) => {
             const type = this.props.user === content.name ? "sender" : "reciever";
             return (
-                <Message key={idx} type={type} name={content.name} text={content.text} />
+                <Message key={idx} type={type} name={content.name} text={content.text} time={content.time} />
             )
         }) : null
         return (
             <React.Fragment>
-                <Col md="">
+                <Col md="" className="bg-secondary">
                     <Row className="mt-4">
-                        <Row className="chatArea" style={{height: "100%"}} ref={this.ChatHeight}>
+                        <Row className="chatArea chatArea--simple">
                             {showMessages}
+                            <div ref={this.chatPosition}></div>
                         </Row>
-                        <Col xs="10" md="11">
-                            <Input className="p-3" onChange={(e) => this.msgInputHandler(e.target.value)} placeholder="Enter text" />
+                        <Col xs="10" md="11" className="mb-3">
+                            <Input ref={this.inputFocus} className="p-3 text-secondary" value={this.state.text} onKeyPress={(e) => this.submitHandler(e)} onChange={(e) => this.msgInputHandler(e)} placeholder="Enter text" />
                         </Col>
-                        <Col className="fs-3 m-auto">
-                            <i className="fas fa-paper-plane Cursor" onClick={this.sendMsgHandler.bind(this)}></i>
+                        <Col className="fs-3 m-auto mb-3">
+                            <i className="fas fa-paper-plane Cursor text-secondary" onClick={this.sendMsgHandler.bind(this)}></i>
                         </Col>
                     </Row>
                 </Col>
