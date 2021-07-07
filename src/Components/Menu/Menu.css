@@ -1,0 +1,34 @@
+.RoomBtn {
+    background-color: #0000;
+    color: #B300B3;
+    border: 1px solid #B300B3;
+    cursor: pointer;
+}
+
+.RoomBtn:hover {
+    background-color: #d580ff;
+    color: white;
+}
+
+.CreateRoomBtn {
+    margin-right: 10px;
+}
+
+.JoinRoomBtn {
+    margin-left: 10px;
+}
+
+.Cursor{
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .CreateRoomBtn {
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+    .JoinRoomBtn {
+        margin-left: 0px;        
+        margin-top: 10px;
+    }
+}
