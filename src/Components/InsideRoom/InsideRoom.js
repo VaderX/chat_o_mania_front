@@ -74,7 +74,7 @@ class InsideRoom extends React.Component {
                                 </Col>
                             </Row>
                             <Row className="RoomTopInfo">
-                                <Sidebar />
+                                <Sidebar user={name} roomId={this.props.roomId} />
                                 <Chat user={name} roomId={this.props.roomId} />
                             </Row>
                         </Col>
@@ -84,9 +84,9 @@ class InsideRoom extends React.Component {
                             </Row>
                             {/* <hr className="bg-primary"/> */}
                             <Row className="mt-5">
-                            <Col xs="1" md="2"><i className="fas fa-globe"></i></Col>
-                            <Col xs="11" md="10" className="mb-4">{this.state.data.admin + " (Admin)"}</Col>
-                            {showRoomMates}
+                                <Col xs="1" md="2"><i className="fas fa-globe"></i></Col>
+                                <Col xs="11" md="10" className="mb-4">{this.state.data.admin + " (Admin)"}</Col>
+                                {showRoomMates}
                             </Row>
                         </Col>
                     </Row>

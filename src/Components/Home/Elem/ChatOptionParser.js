@@ -21,7 +21,7 @@ const ChatOptionParser = (props) => {
                     {/* <img src={Logo} /> */}
                 </Col>
                 <Col className="m-auto">
-                    <Button className="RoomBtn">Click Here to enter</Button>
+                    <Button href="/menu" className="RoomBtn">Click Here to enter</Button>
                 </Col>
             </Row>
         </React.Fragment>

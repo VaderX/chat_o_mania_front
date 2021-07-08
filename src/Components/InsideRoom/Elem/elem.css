@@ -54,3 +54,13 @@
 .SidebarBody {
     border-right: 1px solid #B300B3;
 }
+
+.SidebarTools {
+    position: absolute;
+}
+
+.ytArea{
+    overflow-y: scroll;
+    overflow: auto;   
+    height: 70vh;
+}

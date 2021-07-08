@@ -8,7 +8,8 @@ import Message from './ChatElem/message';
 class Chat extends React.Component {
 
     state = {
-        text: "",
+        type: "text",
+        data: "",
         name: this.props.user,
         time: "",
         roomId: this.props.roomId,
@@ -19,7 +20,7 @@ class Chat extends React.Component {
     inputFocus = React.createRef(null);
 
     msgInputHandler = (e) => {
-        this.setState({ text: e.target.value })
+        this.setState({ data: e.target.value })
     }
 
     submitHandler = (e) => {
@@ -29,10 +30,12 @@ class Chat extends React.Component {
     sendMsgHandler = async () => {
         const socket = socketIOClient("http://localhost:5000");
         const time = new Date();
-        await this.setState({ time: time }, () => {
-            socket.emit("sendMsg", this.state)
-        })
-        this.setState({ text: "" })
+        if (this.state.data !== "") {
+            await this.setState({ time: time }, () => {
+                socket.emit("sendMsg", this.state)
+            })
+            this.setState({ data: "" })
+        }
     }
 
     changeScrollPosition = () => {
@@ -57,13 +60,14 @@ class Chat extends React.Component {
 
     componentDidUpdate() {
         this.changeScrollPosition();
+        console.log("did update")
     }
 
     render() {
         const showMessages = this.state.messages !== undefined ? this.state.messages.map((content, idx) => {
             const type = this.props.user === content.name ? "sender" : "reciever";
             return (
-                <Message key={idx} type={type} name={content.name} text={content.text} time={content.time} />
+                <Message key={idx} type={type} contentType={content.type} name={content.name} data={content.data} time={content.time} />
             )
         }) : null
         return (
@@ -75,7 +79,7 @@ class Chat extends React.Component {
                             <div ref={this.chatPosition}></div>
                         </Row>
                         <Col xs="10" md="11" className="mb-3">
-                            <Input ref={this.inputFocus} className="p-3 text-secondary" value={this.state.text} onKeyPress={(e) => this.submitHandler(e)} onChange={(e) => this.msgInputHandler(e)} placeholder="Enter text" />
+                            <Input ref={this.inputFocus} className="p-3 text-secondary" value={this.state.data} onKeyPress={(e) => this.submitHandler(e)} onChange={(e) => this.msgInputHandler(e)} placeholder="Enter text" />
                         </Col>
                         <Col className="fs-3 m-auto mb-3">
                             <i className="fas fa-paper-plane Cursor text-secondary" onClick={this.sendMsgHandler.bind(this)}></i>
