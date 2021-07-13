@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import Menu from './Components/Menu/Menu';
 import Home from './Components/Home/Home';
 import InsideRoom from './Components/InsideRoom/InsideRoom';
+import Global from './Components/Global/Global';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <div className="App-text">
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/global" component={Global} />
           <Route exact path="/menu" component={Menu} />
           <Route path="/room/:id" component={InsideRoom} />
         </Switch>

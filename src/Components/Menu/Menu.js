@@ -4,13 +4,15 @@ import { Container, Row, Col } from 'reactstrap';
 import { useSelector } from 'react-redux';
 import CreateRoom from '../CreateRoom/CreateRoom';
 import JoinRoom from '../JoinRoom/JoinRoom';
-const Menu = () => {
+const Menu = (props) => {
     const roomId = useSelector(state => state.roomId)
     const [create, setCreate] = useState(false);
     const [join, setJoin] = useState(false);
     const backHandler = () => {
         setCreate(false); setJoin(false);
     }
+
+    // console.log("props are", props.location.query.duet)
     // console.log("room id from home", roomId)
     // console.log("this is user hehehe", currentUser)
     if (roomId)
@@ -31,7 +33,7 @@ const Menu = () => {
                                     Join a Room
                                 </Col>
                             </React.Fragment>
-                            : (!join) ? <CreateRoom back={backHandler} /> : <JoinRoom back={backHandler} />
+                            : (!join) ? <CreateRoom duet={props.location.query.duet} back={backHandler} /> : <JoinRoom back={backHandler} />
                     }
                     <Col md="3"></Col>
                 </Row>

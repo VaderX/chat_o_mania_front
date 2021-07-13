@@ -1,7 +1,8 @@
 import './CreateRoom.css';
 import React from 'react';
 import axios from 'axios';
-import { Col, Input, Button } from 'reactstrap';
+import { Row, Col, Input, Button } from 'reactstrap';
+import Select from 'react-select';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
 import UUID from '../UUID/UUID';
@@ -13,6 +14,7 @@ class CreateRoom extends React.Component {
             roomName: "",
             admin: "",
             roomId: "",
+            roomSize: 5,
         }
     }
 
@@ -36,9 +38,18 @@ class CreateRoom extends React.Component {
 
     componentDidMount() {
         this.setState({ uuid: uuidv4() })
+        if (this.props.duet)
+            this.setState({ data: { ...this.state.data, ['roomSize']: 1 } })
     }
 
     render() {
+        const groupOption = [
+            { value: 5, label: "Small Gang | 5 lilliput" },
+            { value: 10, label: "Medium Gang | 10 boi's" },
+            { value: 20, label: "Cool Gang | 20 goi's" },
+            { value: 50, label: "Biig Gang | 50 noice boi's" },
+            { value: 100, label: "This is not a Gang :( , get some life boi | 100 big boi's" },
+        ]
         return (
             <React.Fragment>
                 <Col xs="11" md="6" className="CreateRoomDialog m-auto">
@@ -49,9 +60,14 @@ class CreateRoom extends React.Component {
                         <Col className="mt-4">
                             <Input placeholder="Enter your room name" onChange={(e) => this.InputHandler("roomName", e.target.value)} className="p-3 text-secondary" />
                         </Col>
-                        <Col className="mt-4 mb-5">
+                        <Col className="mt-4 mb-4">
                             <Input placeholder="Enter your name" onChange={(e) => this.InputHandler("admin", e.target.value)} className="p-3 text-secondary" />
                         </Col>
+                        {this.props.duet ? null :
+                            <Col className=" mb-4 m-auto">
+                                <Select options={groupOption} placeholder="Select your room size" onChange={(e) => this.InputHandler("roomSize", e.value)} />
+                            </Col>
+                        }
                         <UUID id={this.state.uuid} />
                         <Col className="mt-5">
                             <Button className="RoomBtn btn mb-5" >Enter in Room</Button>

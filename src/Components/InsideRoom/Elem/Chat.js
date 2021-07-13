@@ -60,7 +60,6 @@ class Chat extends React.Component {
 
     componentDidUpdate() {
         this.changeScrollPosition();
-        console.log("did update")
     }
 
     render() {

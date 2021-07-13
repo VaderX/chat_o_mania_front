@@ -10,7 +10,7 @@ class JoinRoom extends React.Component {
         resMsg: "",
         userMsg: "",
         data: {
-            roomId: '',
+            roomId: this.props.loc,
             name: this.props.currentUser
         }
     }
@@ -47,7 +47,10 @@ class JoinRoom extends React.Component {
 
         axios.put('/joinRoom', this.state.data)
             .then(res => {
-                if (res.data) {
+                if (!res.data.size) {
+                    this.setState({ resMsg: "Cannot join room, max limit reached " })
+                }
+                if (res.data.status) {
                     this.props.updateRoomId(this.state.data.roomId)
                     this.props.updateCurrentUser(this.state.data.name)
                 }
@@ -60,14 +63,18 @@ class JoinRoom extends React.Component {
             <React.Fragment>
                 <Col xs="11" md="6" className="CreateRoomDialog m-auto">
                     <form onSubmit={this.submitHandler.bind(this)}>
-                        <Col className="text-start mt-2 fs-3">
-                            <i className="fas fa-arrow-circle-left Cursor text-secondary" onClick={this.props.back}></i>
-                        </Col>
+                        {this.props.loc === "global chat" ? null :
+                            <Col className="text-start mt-2 fs-3">
+                                <i className="fas fa-arrow-circle-left Cursor text-secondary" onClick={this.props.back}></i>
+                            </Col>
+                        }
                         <Col className="mt-4">
                             <Input
                                 placeholder="Enter room ID"
                                 onChange={(e) => this.handleEvent("roomId", e.target.value)}
                                 className="p-3 text-secondary"
+                                disabled={this.props.loc === "global chat"}
+                                value={this.state.data.roomId}
                             />
                         </Col>
                         <Col className="mt-4">
@@ -97,7 +104,9 @@ class JoinRoom extends React.Component {
                             <Button
                                 className="RoomBtn btn mb-5"
                                 disabled={this.state.userMsg ? false : true}
-                            >Enter in Room</Button>
+                            >
+                                Enter in Room
+                            </Button>
                         </Col>
                     </form>
                 </Col>
