@@ -24,12 +24,22 @@ const Message = (props) => {
                             </iframe>
                             <div className={"msgDetails " + msgAlign}>{props.name + " " + time}</div>
                         </Col>
-                        : props.contentType === "gif" || props.contentType === "sticker" ?
+                        : props.contentType === "gif" || props.contentType === "sticker" || props.contentType === "img" ?
                             <Col className={" " + align}>
-                                <img className={"chatTextBody p-3 " + classStyle} src={props.data} />
+                                {props.contentType === "img" ?
+                                    <img width="400px" height="400px" style={{ objectFit: "cover" }} className={"chatTextBody p-3 " + classStyle} src={props.data} />
+                                    : <img className={"chatTextBody p-3 " + classStyle} src={props.data} />
+                                }
                                 <div className={"msgDetails " + msgAlign}>{props.name + " " + time}</div>
                             </Col>
-                            : null
+                            : props.contentType === "video" ?
+                                <Col className={" " + align}>
+                                    <video width="400px" height="400px" className={"chatTextBody p-3 " + classStyle} controls>
+                                        <source src={props.data} />
+                                    </video>
+                                    <div className={"msgDetails " + msgAlign}>{props.name + " " + time}</div>
+                                </Col>
+                                : null
                 }
             </Col>
         </React.Fragment>

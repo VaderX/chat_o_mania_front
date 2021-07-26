@@ -12,7 +12,7 @@ const Menu = (props) => {
         setCreate(false); setJoin(false);
     }
 
-    // console.log("props are", props.location.query.duet)
+    // console.log("props are", props.location.query.duet) from chatparser component
     // console.log("room id from home", roomId)
     // console.log("this is user hehehe", currentUser)
     if (roomId)

@@ -3,6 +3,7 @@ import socketIOClient from 'socket.io-client';
 import { Row, Col, Input, Card, CardBody, Button } from 'reactstrap';
 import Yt from './SidebarElem/yt';
 import Giphy from './SidebarElem/giphy';
+import ChatFile from './SidebarElem/file';
 
 const Sidebar = (props) => {
     const socket = socketIOClient("http://localhost:5000");
@@ -49,7 +50,11 @@ const Sidebar = (props) => {
             {Type === "gif" ?
                 <Giphy type="gifs" close={() => setType(null)} data={(gifSrc) => toolsHandler(gifSrc)} /> : null}
             {Type === "sticker" ?
-                <Giphy type="stickers" close={() => setType(null)} data={(gifSrc) => toolsHandler(gifSrc)} /> : null}
+                <Giphy type="stickers" close={() => setType(null)} data={(stickerSrc) => toolsHandler(stickerSrc)} /> : null}
+            {Type === "img" ?
+                <ChatFile type="img" close={() => setType(null)} data={(imgSrc) => toolsHandler(imgSrc)} /> : null}
+            {Type === "video" ?
+                <ChatFile type="video" close={() => setType(null)} data={(videoSrc) => toolsHandler(videoSrc)} /> : null}
         </React.Fragment>
     )
 }

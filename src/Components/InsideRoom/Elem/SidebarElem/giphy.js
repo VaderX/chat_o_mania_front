@@ -15,7 +15,6 @@ const Giphy = (props) => {
         })
     }
 
-
     useEffect(() => {
         axios.get(trendingEndpoint + api_key + "&limit=16").then(res => {
             setData(res.data.data)
